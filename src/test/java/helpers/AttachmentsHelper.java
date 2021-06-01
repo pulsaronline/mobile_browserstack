@@ -10,10 +10,10 @@ import java.nio.charset.StandardCharsets;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class AttachmentsHelper {
-//        @Attachment(value = "{attachName}", type = "text/plain")
-//        public static String attachAsText(String attachName, String message) {
-//            return message;
-//        }
+        @Attachment(value = "{attachName}", type = "text/plain")
+        public static String attachAsText(String attachName, String message) {
+            return message;
+        }
 
         @Attachment(value = "Page source", type = "text/html")
         public static byte[] addPageSource() {
@@ -31,7 +31,7 @@ public class AttachmentsHelper {
                     + BrowserstackApi.getVideoUrl(sessionId)
                     + "' type='video/mp4'></video></body></html>";
         }
-        public String getSessionId(){
+        public static String getSessionId(){
             return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
         }
 }

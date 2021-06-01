@@ -1,10 +1,8 @@
 package tests;
 
 import java.net.URL;
-import java.util.List;
 import java.net.MalformedURLException;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.remote.DesiredCapabilities;

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import drivers.BrowserstackMobileDriver;
 import helpers.AttachmentsHelper;
+import helpers.BrowserstackApi;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -33,7 +34,8 @@ public class TestBase {
 
     @AfterEach
     void afterEach(){
-        String sessionId = ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
+//        String sessionId = ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
+        String sessionId = AttachmentsHelper.getSessionId();
 
         AttachmentsHelper.addScreenshotAs("Last screenshot");
         AttachmentsHelper.addPageSource();
