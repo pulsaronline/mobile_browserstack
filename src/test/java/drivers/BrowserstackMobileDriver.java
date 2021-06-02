@@ -1,42 +1,48 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import config.Project;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
+    @Nonnull
+    @Override
+    public WebDriver createDriver(DesiredCapabilities capabilities) {
+        capabilities.setCapability("browserstack.user", Project.browserstackConfig.bsUsername());
+        capabilities.setCapability("browserstack.key", Project.browserstackConfig.bsPassword());
+        capabilities.setCapability("app", Project.browserstackConfig.bsApp());
+        capabilities.setCapability("device", Project.deviceConfig.device());
+        capabilities.setCapability("os_version", Project.deviceConfig.osVersion());
+        capabilities.setCapability("project", Project.browserstackConfig.bsProject());
+        capabilities.setCapability("build", Project.browserstackConfig.bsBuild());
+        capabilities.setCapability("name", Project.browserstackConfig.bsName());
 
-    public static URL getBrowserstackUrl() {
+        System.out.println(capabilities);
+
+
+        if ("ios".equals(System.getProperty("os"))) {
+            return new IOSDriver(getBrowserstackUrl(), capabilities);
+        }
+        return new AndroidDriver(getBrowserstackUrl(), capabilities);
+    }
+
+    private static URL getBrowserstackUrl() {
         try {
-            return new URL("http://hub.browserstack.com/wd/hub");
+            return new URL(
+                    String.format(
+                            Project.browserstackConfig.bsHubUrl(),
+                            Project.browserstackConfig.bsUsername(),
+                            Project.browserstackConfig.bsPassword())
+            );
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
-
-        // Set your access credentials
-        desiredCapabilities.setCapability("browserstack.user", "maksimbessudnov_kNJCU4");
-        desiredCapabilities.setCapability("browserstack.key", "pypsptaszQipGBi7M3eR");
-
-        // Set URL of the application under test
-        desiredCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
-
-        // Specify device and os_version for testing
-        desiredCapabilities.setCapability("device", "Google Pixel 3");
-        desiredCapabilities.setCapability("os_version", "9.0");
-
-        // Set other BrowserStack capabilities
-        desiredCapabilities.setCapability("project", "First Java Project");
-        desiredCapabilities.setCapability("build", "Java Android");
-        desiredCapabilities.setCapability("name", "first_test");
-
-        return new AndroidDriver(getBrowserstackUrl(), desiredCapabilities);
     }
 }
