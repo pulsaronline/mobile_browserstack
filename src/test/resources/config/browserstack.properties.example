@@ -1,0 +1,8 @@
+bs.api.url=https://api-cloud.browserstack.com
+bs.hub.url=https://%s:%s@hub-cloud.browserstack.com/wd/hub
+bs.username=
+bs.password=
+bs.app=bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c
+bs.project=First Java project
+bs.build=java
+bs.name=first_test
