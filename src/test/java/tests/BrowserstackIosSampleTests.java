@@ -3,6 +3,7 @@ package tests;
 import java.net.URL;
 import java.net.MalformedURLException;
 
+import config.Project;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,29 +18,19 @@ public class BrowserstackIosSampleTests {
     @Test
     void iosSearchTest() throws MalformedURLException, InterruptedException{
         DesiredCapabilities caps = new DesiredCapabilities();
-
-        // Set your access credentials
-        caps.setCapability("browserstack.user", "maksimbessudnov_kNJCU4");
-        caps.setCapability("browserstack.key", "pypsptaszQipGBi7M3eR");
-
-        // Set URL of the application under test
-        caps.setCapability("app", "bs://444bd0308813ae0dc236f8cd461c02d3afa7901d");
-
-        // Specify device and os_version for testing
-        caps.setCapability("device", "iPhone XS");
-        caps.setCapability("os_version", "12");
-
-        // Set other BrowserStack capabilities
-        caps.setCapability("project", "First Java Project");
-        caps.setCapability("build", "Java iOS");
-        caps.setCapability("name", "first_test");
-
+        caps.setCapability("browserstack.user", Project.browserstackConfig.bsUsername());
+        caps.setCapability("browserstack.key", Project.browserstackConfig.bsPassword());
+        caps.setCapability("app", Project.browserstackConfig.bsApp());
+        caps.setCapability("device", Project.deviceConfig.device());
+        caps.setCapability("os_version", Project.deviceConfig.osVersion());
+        caps.setCapability("project", Project.browserstackConfig.bsProject());
+        caps.setCapability("build", Project.browserstackConfig.bsBuild());
+        caps.setCapability("name", Project.browserstackConfig.bsName());
 
         // Initialise the remote Webdriver using BrowserStack remote URL
         // and desired capabilities defined above
         IOSDriver<IOSElement> driver = new IOSDriver<IOSElement>(
                 new URL("http://hub-cloud.browserstack.com/wd/hub"), caps);
-
 
         // Test case for the BrowserStack sample iOS app.
         // If you have uploaded your app, update the test case here.

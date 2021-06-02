@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.net.MalformedURLException;
 
+import config.Project;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -16,22 +17,14 @@ public class BrowserstackAndroidSampleTests {
     public static void main(String[] args) throws MalformedURLException, InterruptedException {
 
         DesiredCapabilities caps = new DesiredCapabilities();
-
-        // Set your access credentials
-        caps.setCapability("browserstack.user", "maksimbessudnov_kNJCU4");
-        caps.setCapability("browserstack.key", "pypsptaszQipGBi7M3eR");
-
-        // Set URL of the application under test
-        caps.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
-
-        // Specify device and os_version for testing
-        caps.setCapability("device", "Google Pixel 3");
-        caps.setCapability("os_version", "9.0");
-
-        // Set other BrowserStack capabilities
-        caps.setCapability("project", "First Java Project");
-        caps.setCapability("build", "Java Android");
-        caps.setCapability("name", "first_test");
+        caps.setCapability("browserstack.user", Project.browserstackConfig.bsUsername());
+        caps.setCapability("browserstack.key", Project.browserstackConfig.bsPassword());
+        caps.setCapability("app", Project.browserstackConfig.bsApp());
+        caps.setCapability("device", Project.deviceConfig.device());
+        caps.setCapability("os_version", Project.deviceConfig.osVersion());
+        caps.setCapability("project", Project.browserstackConfig.bsProject());
+        caps.setCapability("build", Project.browserstackConfig.bsBuild());
+        caps.setCapability("name", Project.browserstackConfig.bsName());
 
         // Initialise the remote Webdriver using BrowserStack remote URL
         // and desired capabilities defined above
