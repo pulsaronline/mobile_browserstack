@@ -17,7 +17,7 @@ public class BrowserstackAndroidSelenideTests extends TestBase {
 
     @Test
     @DisplayName("Successful Wikipedia simple Selenide test in Android app")
-    void androidSearchTest(){
+    void androidSelenideSimpleSearchTest(){
         step("Type search", () -> {
         $(MobileBy.AccessibilityId("Search Wikipedia")).click();
         $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).val("BrowserStack");
@@ -29,7 +29,7 @@ public class BrowserstackAndroidSelenideTests extends TestBase {
 
     @Test
     @DisplayName("Successful Wikipedia advanced Selenide test in Android app")
-    void androidSearchTestWikipedia(){
+    void androidSelenideAdvancedSearchTest(){
         step("Type search", () -> {
             $(MobileBy.AccessibilityId("Search Wikipedia")).click();
             $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).val("BrowserStack");

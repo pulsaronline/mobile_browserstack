@@ -13,7 +13,6 @@ import java.net.URL;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
 
-    @Nonnull
     @Override
     public WebDriver createDriver(DesiredCapabilities capabilities) {
         capabilities.setCapability("browserstack.user", Project.browserstackConfig.bsUsername());

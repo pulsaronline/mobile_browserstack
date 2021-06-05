@@ -15,7 +15,7 @@ import io.appium.java_client.ios.IOSElement;
 
 public class BrowserstackIosSampleTests {
 
-    @Test
+//    @Test
     void iosSearchTest() throws MalformedURLException, InterruptedException{
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("browserstack.user", Project.browserstackConfig.bsUsername());
@@ -50,6 +50,5 @@ public class BrowserstackIosSampleTests {
 
         // Invoke driver.quit() after the test is done to indicate that the test is completed.
         driver.quit();
-
     }
 }

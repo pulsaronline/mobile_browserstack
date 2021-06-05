@@ -16,6 +16,10 @@ public interface BrowserstackConfig extends Config {
     String bsUsername();
     @Key("bs.password")
     String bsPassword();
+    @Key("device")
+    String device();
+    @Key("os.version")
+    String osVersion();
     @Key("bs.app")
     String bsApp();
     @Key("bs.project")
@@ -24,4 +28,5 @@ public interface BrowserstackConfig extends Config {
     String bsBuild();
     @Key("bs.name")
     String bsName();
+
 }
