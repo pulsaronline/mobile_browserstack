@@ -18,8 +18,8 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         capabilities.setCapability("browserstack.user", Project.browserstackConfig.bsUsername());
         capabilities.setCapability("browserstack.key", Project.browserstackConfig.bsPassword());
         capabilities.setCapability("app", Project.browserstackConfig.bsApp());
-        capabilities.setCapability("device", Project.deviceConfig.device());
-        capabilities.setCapability("os_version", Project.deviceConfig.osVersion());
+        capabilities.setCapability("device", Project.browserstackConfig.device());
+        capabilities.setCapability("os_version", Project.browserstackConfig.osVersion());
         capabilities.setCapability("project", Project.browserstackConfig.bsProject());
         capabilities.setCapability("build", Project.browserstackConfig.bsBuild());
         capabilities.setCapability("name", Project.browserstackConfig.bsName());
